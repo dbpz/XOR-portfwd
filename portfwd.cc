@@ -251,7 +251,7 @@ void term_handler(int sig)
 
 int main(int argc, const char *argv[]) 
 {
-  set_prog_name("portfwd");
+  set_prog_name("portfwdXOR");
 
   /*
    * Read arguments from command line.
