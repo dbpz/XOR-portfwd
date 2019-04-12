@@ -663,7 +663,11 @@ void remove_fd_offset(int fd){
 }
 
 int pseudo_rand_key_offset(long long key, long long offset, long long session_key){
+<<<<<<< HEAD
   return (int)( ( key ^ session_key ^ ((offset + key % 39191llu) << 30) ^(((offset+key+session_key)% 6373737llu)<<15) ^ ((offset+key+526231)<<3)) % 41621llu);
+=======
+  return (int)( (key ^(((offset ^ session_key) % 2038074739ll) << 27) ^ (((offset ^ key) % 3603804991llu)<<3)) % 41621llu);
+>>>>>>> 8c360db
 }
 
 int is_insertion_byte(long long key, long long inflated_offset, long long  session_key){
@@ -671,8 +675,13 @@ int is_insertion_byte(long long key, long long inflated_offset, long long  sessi
   int vr =  pseudo_rand_key_offset(key, inflated_offset, session_key);
 
   long long vcut = 10000 + ( vr<<14 )  % 65103llu;
+<<<<<<< HEAD
   if(vcut > inflated_offset) return vr > (vr<<14 + inflated_offset) % 30857 + 2000;
   else return vr < 1500;
+=======
+  if(vcut > inflated_offset) return vr > (vr<<14 + inflated_offset) % 30857 + 10000;
+  else return vr < 1000;
+>>>>>>> 8c360db
 }
 
 int apply_XOR_buf(long long XOR_key, long long confusing_key, char *buf, char ** buf2, int * rd, int sock_fd, int need_session){
