@@ -662,8 +662,10 @@ void remove_fd_offset(int fd){
   HashTableRemove(fd_offset_table,  (void *)(1llu+fd));
 }
 
+// The portfwdXOR program is not for protecting the data to the maximum level. It is to camouflage the communication so that it cannot be censored at a low cost. 
+// Hence the pesudo RNG is very simple.
 int pseudo_rand_key_offset(long long key, long long offset, long long session_key){
-  return (int)( (key ^(((offset ^ session_key) % 2038074739ll) << 27) ^ (((offset ^ key) % 3603804991llu)<<3)) % 41621llu);
+  return (int) (( key ^(((offset + key)<< 27) % 2038074739ll ) ^ (( offset <<3+ session_key ) % 3603804991llu ))% 41621llu );
 }
 
 int is_insertion_byte(long long key, long long inflated_offset, long long  session_key){
