@@ -1087,6 +1087,7 @@ void client_socket(int src_fd, fd_set *fds, int dest_fd[], int *maxfd, const str
     DEBUGFD(syslog(LOG_DEBUG, "client_socket: closed socket (FD %d or %d)", src_fd, trg_fd));
 
     remove_fd_offset(src_fd);
+    remove_fd_offset(trg_fd);
     fdclear(src_fd, fds, maxfd);
     fdclear(trg_fd, fds, maxfd);
     socket_close(src_fd);
