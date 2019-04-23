@@ -692,7 +692,7 @@ int apply_XOR_buf(long long XOR_key, long long confusing_key, char *buf, char **
     int oxx = 0;
     xx = 0;
 
-    int buf2_size = (*rd)*1.2 + 3;
+    int buf2_size = (*rd)*1.8 + 3;
     (*buf2) = (char*)malloc(buf2_size);
     while(xx <  * rd){
       if(buf2_size <= oxx){
@@ -1297,7 +1297,7 @@ void udp_forward(const struct ip_addr *listen_addr, const struct ip_addr *source
 	  continue;
 	}
         char *buf2 = NULL;
-        assert(0==apply_XOR_buf(XOR_key, 0ll, buf, &buf2,&rd, 0, 0));
+        apply_XOR_buf(XOR_key, 0ll, buf, &buf2,&rd, 0, 0);
 
 	/*
 	 * Get local address
