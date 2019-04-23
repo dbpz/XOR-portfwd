@@ -13,7 +13,7 @@
  */
 
 #ifndef FD_SETSIZE
-#define FD_SETSIZE 2048
+#define FD_SETSIZE 8988
 #endif
 
 #define PORTFWD_MAX_FD FD_SETSIZE
